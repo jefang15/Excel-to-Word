@@ -229,7 +229,7 @@ for question_num, participant_response in zip(questions_in_base_section, dict_re
 """ ########################################################################################################################## """
 
 
-def docx_marings(doc):
+def docx_margins(doc):
     sections = doc.sections
 
     for section in sections:
@@ -409,5 +409,111 @@ def docx_style(document_name):
             run.italic = False
 
 
+""" ########################################################################################################################## """
+""" Write Results to Word Document """
+""" ########################################################################################################################## """
 
 
+""" Print only unique value per Power Plant """
+
+
+report_outline = Document()
+
+" Heading "
+docx_level1_heading(report_outline, 'GO/GOP')
+
+" Assessment "
+docx_level2_heading(report_outline, 'Assessment')
+
+# Assessment - Base
+docx_level3_heading(report_outline, 'Base')
+go_base = [k, l, m, n, o]
+docx_write_response_to_doc(report_outline, go_base, 4, df_questions, df_responses_concat, dict_responses, 0.50)
+
+" Overview "
+docx_level2_heading(report_outline, 'Overview')
+
+" Technical Topic "
+docx_level2_heading(report_outline, 'Technical Topic: Fuel Contracts')
+
+" Technical Topic - Details on Primary Fuel "
+docx_level3_heading(report_outline, 'Details on Primary Fuel')
+
+docx_level4_heading(report_outline, 'Quantitative')
+go_primary_fuel_quant = [r, s, u, y, aa, ac, ae, ag, ai, ak]
+docx_write_response_to_doc(report_outline, go_primary_fuel_quant, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+docx_level4_heading(report_outline, 'Qualitative')
+go_primary_fuel_qual = [p, q, t, v, w, x, z, ab, ad, af, ah, aj, al]
+docx_write_response_to_doc(report_outline, go_primary_fuel_qual, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+" Technical Topic - Details on Any Alternative Fuel "
+docx_level3_heading(report_outline, 'Details on Any Alternative Fuel')
+
+docx_level4_heading(report_outline, 'Quantitative')
+go_alt_fuel_quant = [ao, ap, ar, av, ax, az, bb, bd, bf, bh]
+docx_write_response_to_doc(report_outline, go_alt_fuel_quant, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+docx_level4_heading(report_outline, 'Qualitative')
+go_alt_fuel_qual = [am, an, aq, AS, at, au, aw, ay, ba, bc, be, bg, bi]
+docx_write_response_to_doc(report_outline, go_alt_fuel_qual, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+" Technical Topic - Pipeline Information "
+docx_level3_heading(report_outline, 'Pipeline Information')
+
+docx_level4_heading(report_outline, 'Quantitative')
+go_pipeline_info_quant = [bj, bl]
+docx_write_response_to_doc(report_outline, go_pipeline_info_quant, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+docx_level4_heading(report_outline, 'Qualitative')
+go_pipeline_info_qual = [bk]
+docx_write_response_to_doc(report_outline, go_pipeline_info_qual, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+" Technical Topic - Plant Configuration "
+docx_level3_heading(report_outline, 'Plant Configuration')
+
+docx_level4_heading(report_outline, 'Quantitative')
+go_plant_config_quant = [bj, bl]
+docx_write_response_to_doc(report_outline, go_plant_config_quant, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+docx_level4_heading(report_outline, 'Qualitative')
+go_plant_config_qual = [bk]
+docx_write_response_to_doc(report_outline, go_plant_config_qual, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+" Technical Topic - Onsite (Alternate) Fuel "
+docx_level3_heading(report_outline, 'Onsite (Alternate) Fuel')
+
+docx_level4_heading(report_outline, 'Quantitative')
+go_onsite_alt_fuel_quant = [bj, bl]
+docx_write_response_to_doc(report_outline, go_onsite_alt_fuel_quant, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+docx_level4_heading(report_outline, 'Qualitative')
+go_onsite_alt_fuel_qual = [bk]
+docx_write_response_to_doc(report_outline, go_onsite_alt_fuel_qual, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+" Technical Topic - Restrictions and Curtailments "
+docx_level3_heading(report_outline, 'Restrictions and Curtailments')
+
+docx_level4_heading(report_outline, 'Quantitative')
+go_restrictions_quant = [bj, bl]
+docx_write_response_to_doc(report_outline, go_restrictions_quant, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+docx_level4_heading(report_outline, 'Qualitative')
+go_restrictions_qual = [bk]
+docx_write_response_to_doc(report_outline, go_restrictions_qual, 5, df_questions, df_responses_concat, dict_responses, 1.0)
+
+" Technical Topic - Any Additional Information "
+docx_level3_heading(report_outline, 'Any Additional Information')
+
+go_additional_info = [bv]
+docx_write_response_to_doc(report_outline, go_additional_info, 4, df_questions, df_responses_concat, dict_responses, 0.50)
+
+
+" Document Formatting "
+
+docx_margins(report_outline)
+docx_style(report_outline)
+docx_add_page_number(report_outline)
+
+# Save to Word Document
+report_outline.save(r'T:\StaffFolders\JFang\Project\Report Outline.docx')
